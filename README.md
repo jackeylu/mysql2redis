@@ -2,11 +2,11 @@
 ===============
 
 This is a [UDF][UDF] plugin for MySQL, which can
-provide some redis command support function
+provide some [redis][Redis] command support function
 to push data from MySQL to Redis.
 
 [UDF]: http://dev.mysql.com/doc/refman/5.1/en/adding-functions.html
-[Redis]:
+[Redis]: http://redis.io/
 
 Documentation
 -------------

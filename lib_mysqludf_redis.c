@@ -41,6 +41,11 @@ typedef long long longlong;
 
 #include <ctype.h>
 
+/**
+ * hiredis head file
+ */
+#include <hiredis/hiredis.h>
+
 #ifdef HAVE_DLOPEN
 #ifdef	__cplusplus
 extern "C" {

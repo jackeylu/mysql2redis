@@ -1,9 +1,10 @@
 PLUGINDIR=`/usr/bin/mysql_config --plugindir`
-INCLUDE=`/usr/bin/mysql_config --include`
-
+INCLUDE=`/usr/bin/mysql_config --include` -I/usr/local/include
+LIBS=-lhiredis
 
 install:
-	gcc -Wall -o2 $(INCLUDE) -I. -fPIC -shared lib_mysqludf_redis.c -o $(PLUGINDIR)/lib_mysqludf_redis.so
+	gcc -Werror -o2 $(INCLUDE) -I. -fPIC -shared lib_mysqludf_redis.c \
+		$(LIBS) -o $(PLUGINDIR)/lib_mysqludf_redis.so
 
 uninstall:
 	rm -f $(PLUGINDIR)/lib_mysqludf_redis.so

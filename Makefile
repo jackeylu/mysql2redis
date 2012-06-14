@@ -3,7 +3,7 @@ INCLUDE=`/usr/bin/mysql_config --include` -I/usr/local/include
 LIBS=-lhiredis
 
 install:
-	gcc -Werror -o2 $(INCLUDE) -I. -fPIC -shared lib_mysqludf_redis.c \
+	gcc -Werror -O2 $(INCLUDE) -I. -fPIC -shared lib_mysqludf_redis.c \
 		$(LIBS) -o $(PLUGINDIR)/lib_mysqludf_redis.so
 
 uninstall:

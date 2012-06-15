@@ -201,7 +201,7 @@ my_bool redis_command_init(
 	} else {
 		strcpy(
 			message
-		,	"redis_command(host,port,command) Expected exactly 3 string type parameteres"
+		,	"redis_command(host,port,command) Expected exactly 3  parameteres"
 		);		
 		return 1;
 	}

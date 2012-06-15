@@ -165,3 +165,6 @@ pip-log.txt
 # Temp file
 *~
 *.*~
+
+# taglist/ctags file
+tags

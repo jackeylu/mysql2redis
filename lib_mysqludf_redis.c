@@ -270,6 +270,8 @@ my_ulonglong redis_command(
 		snprintf(error,MYSQL_ERRMSG_SIZE,"connection error: %s\n",
 			c->errstr);
 
+		redisFree(c);
+		c = NULL;
 		return 1; //FIXME should return what?
 	}
 
@@ -278,8 +280,16 @@ my_ulonglong redis_command(
 	{
 		snprintf(error,MYSQL_ERRMSG_SIZE,"connection error: %s\n",
 			c->errstr);
+		redisFree(c);
+		c = NULL;
 		return 2;
 	}
+
+	// do the clean work
+	freeReplyObject(reply);
+	reply = NULL;
+	redisFree(c);
+	c = NULL;
 
 	return 0;
 }

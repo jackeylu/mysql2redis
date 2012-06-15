@@ -1,7 +1,7 @@
 [MySQL2Redis][]
 ===============
 
-This is a [UDF][UDF] plugin for MySQL, which can
+This is a [user-defined function (UDF) ][UDF] plugin for MySQL, which can
 provide some [redis][Redis] command support function
 to push data from MySQL to Redis.
 

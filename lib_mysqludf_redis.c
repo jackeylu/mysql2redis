@@ -46,6 +46,11 @@ typedef long long longlong;
  */
 #include <hiredis/hiredis.h>
 
+/*
+ * self-defined head file
+ */
+#include "utils.h"
+
 #ifdef HAVE_DLOPEN
 #ifdef	__cplusplus
 extern "C" {
@@ -194,62 +199,98 @@ my_bool redis_command_init(
 ,	char *message
 ){
 	if(args->arg_count == 3
-	&& args->arg_type[0]==STRING_RESULT
-	&& args->arg_type[1]==INT_RESULT
-	&& args->arg_type[2]==STRING_RESULT){
+		&& args->arg_type[0]==STRING_RESULT
+		&& args->arg_type[1]==INT_RESULT
+		&& args->arg_type[2]==STRING_RESULT){
 		return 0;
 	} else {
 		strcpy(
-			message
-		,	"redis_command(host,port,command) Expected exactly 3  parameteres, a string, an integer and a string"
-		);		
+			message	,
+			"redis_command(host,port,command) Expected exactly 3  parameteres, a string, an integer and a string"
+	      );		
 		return 1;
 	}
+	/*
+	 *FIXME how to make sure that:
+	 * host is a valid hostname or ip address,
+	 * port is an integer more than zero
+	 * command is a string not empty
+	 */
+	char *host = args->args[0];
+	unsigned long host_len = args->lengths[0];
+	long long port = *((long long*)args->args[1]);
+	char *cmd = args->args[2];
+	unsigned long cmd_len = args->lengths[3];
+
+	if(!check_host(host) || !check_ip(host))
+	{
+		strcpy(message,
+			"The first parameter is not a valid host or ip address");
+		return 2;
+	}
+
+	if(port <= 0)
+	{
+		strcpy(message,
+			"The second parameter must be an integer bigger than zero");
+		return 2;
+	}
+
+	if(cmd_len <= 0 || strlen(cmd) <=0 || NULL == cmd)
+	{
+		strcpy(message,
+			"The third parameter is not a valid command string");
+		return 2;
+	}
+
 }
-void redis_command_deinit(
-	UDF_INIT *initid
-){
+void redis_command_deinit(UDF_INIT *initid){
 	// nonthing need to be cleanup
 }
 my_ulonglong redis_command(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char *is_null
-,	char *error
-){
+		UDF_INIT *initid,
+		UDF_ARGS *args,
+		char *is_null,
+		char *error){
+	char *host = args->args[0];
+	unsigned long host_len = args->lengths[0];
+	// FIXME how to make sure that port is >=0?
+	long long port = *((long long*)args->args[1]);
+	char *cmd = args->args[2];
+
 	// TODO implementation
 	return system(args->args[0]);
 }
 
 my_bool redis_command2_init(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char *message
-){
+		UDF_INIT *initid
+		,	UDF_ARGS *args
+		,	char *message
+		){
 	unsigned int i=0;
 	if(args->arg_count == 1
-	&& args->arg_type[i]==STRING_RESULT){
+			&& args->arg_type[i]==STRING_RESULT){
 		return 0;
 	} else {
 		strcpy(
-			message
-		,	"Expected exactly one string type parameter"
-		);		
+				message
+				,	"Expected exactly one string type parameter"
+		      );		
 		return 1;
 	}
 }
 void redis_command2_deinit(
-	UDF_INIT *initid
-){
+		UDF_INIT *initid
+		){
 }
 char* redis_command2(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char* result
-,	unsigned long* length
-,	char *is_null
-,	char *error
-){
+		UDF_INIT *initid
+		,	UDF_ARGS *args
+		,	char* result
+		,	unsigned long* length
+		,	char *is_null
+		,	char *error
+		){
 	FILE *pipe;
 	char line[1024];
 	unsigned long outlen, linelen;

@@ -51,6 +51,7 @@ typedef long long longlong;
  */
 #include "utils.h"
 
+
 #ifdef HAVE_DLOPEN
 #ifdef	__cplusplus
 extern "C" {
@@ -174,13 +175,13 @@ void lib_mysqludf_redis_info_deinit(
 }
 
 char* lib_mysqludf_redis_info(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char* result
-,	unsigned long* length
-,	char *is_null
-,	char *error
-){
+	UDF_INIT *initid,
+	UDF_ARGS *args,
+	char* result,
+	unsigned long* length,
+	char *is_null,
+	char *error)
+{
 	strcpy(result,LIBVERSION);
 	*length = strlen(LIBVERSION);
 	return result;
@@ -198,11 +199,11 @@ my_bool redis_command_init(
 ,	UDF_ARGS *args
 ,	char *message
 ){
-	if(args->arg_count == 3 ){
-		// set the arguments' types
-		args->arg_type[0]=STRING_RESULT;
-		args->arg_type[1]=INT_RESULT ;
-		args->arg_type[2]=STRING_RESULT;
+	if(args->arg_count == 3 && 
+		args->arg_type[0]==STRING_RESULT &&
+		args->arg_type[1]==INT_RESULT &&
+		args->arg_type[2]==STRING_RESULT)
+	{
 
 		args->maybe_null = 0; // each parameter could not be NULL
 
@@ -226,10 +227,10 @@ my_bool redis_command_init(
 			return 2;
 		}
 
-		if(cmd_len <= 0 || strlen(cmd) <=0 || NULL == cmd)
+		if(strlen(cmd) <=0 || NULL == cmd)
 		{
-			strcpy(message,
-				"The third parameter is not a valid command string");
+			snprintf(message,MYSQL_ERRMSG_SIZE,"The third parameter error,[%s]\n",
+					cmd);
 			return 2;
 		}
 		// everthing looks OK.
@@ -245,6 +246,11 @@ my_bool redis_command_init(
 void redis_command_deinit(UDF_INIT *initid){
 	// nonthing need to be cleanup
 }
+/**
+ * redis_command
+ *
+ * the implementation
+ */
 my_ulonglong redis_command(
 		UDF_INIT *initid,
 		UDF_ARGS *args,
@@ -261,12 +267,21 @@ my_ulonglong redis_command(
 	c = redisConnect(host,port);
 	if (c->err)
 	{
-		strcpy(error,"connection error: %s\n",
-				c->errstr);
+		snprintf(error,MYSQL_ERRMSG_SIZE,"connection error: %s\n",
+			c->errstr);
+
 		return 1; //FIXME should return what?
 	}
 
-	return system(args->args[0]);
+	reply = redisCommand(c,cmd);
+	if(NULL == reply)
+	{
+		snprintf(error,MYSQL_ERRMSG_SIZE,"connection error: %s\n",
+			c->errstr);
+		return 2;
+	}
+
+	return 0;
 }
 
 my_bool redis_command2_init(

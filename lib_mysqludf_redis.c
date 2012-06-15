@@ -182,19 +182,26 @@ char* lib_mysqludf_redis_info(
 }
 
 
+/**
+ * redis_command implementation
+ *
+ * redis_command(host,port,command)
+ *
+ */
 my_bool redis_command_init(
 	UDF_INIT *initid
 ,	UDF_ARGS *args
 ,	char *message
 ){
-	unsigned int i=0;
-	if(args->arg_count == 1
-	&& args->arg_type[i]==STRING_RESULT){
+	if(args->arg_count == 3
+	&& args->arg_type[0]==STRING_RESULT
+	&& args->arg_type[1]==STRING_RESULT
+	&& args->arg_type[2]==STRING_RESULT){
 		return 0;
 	} else {
 		strcpy(
 			message
-		,	"Expected exactly one string type parameter"
+		,	"redis_command(host,port,command) Expected exactly 3 string type parameteres"
 		);		
 		return 1;
 	}

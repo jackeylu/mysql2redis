@@ -195,7 +195,7 @@ my_bool redis_command_init(
 ){
 	if(args->arg_count == 3
 	&& args->arg_type[0]==STRING_RESULT
-	&& args->arg_type[1]==STRING_RESULT
+	&& args->arg_type[1]==INT_RESULT
 	&& args->arg_type[2]==STRING_RESULT){
 		return 0;
 	} else {
@@ -209,6 +209,7 @@ my_bool redis_command_init(
 void redis_command_deinit(
 	UDF_INIT *initid
 ){
+	// nonthing need to be cleanup
 }
 my_ulonglong redis_command(
 	UDF_INIT *initid
@@ -216,6 +217,7 @@ my_ulonglong redis_command(
 ,	char *is_null
 ,	char *error
 ){
+	// TODO implementation
 	return system(args->args[0]);
 }
 

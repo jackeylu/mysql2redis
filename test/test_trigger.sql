@@ -2,7 +2,7 @@ use test;
 
 DROP table IF EXISTS test2;
 
-CREATE TABLE test2(a1 INT) type=InnoDB;
+CREATE TABLE test2(a1 INT,a2 INT);
 
 DROP TRIGGER  IF EXISTS test2redisref;
 

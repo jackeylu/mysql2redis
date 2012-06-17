@@ -1,0 +1,1166 @@
+120617  7:48:12 [Note] /usr/libexec/mysqld: Normal shutdown
+
+120617  7:48:12 [Note] Event Scheduler: Purging the queue. 0 events
+120617  7:48:12 [Note] /usr/libexec/mysqld: Shutdown complete
+
+120617 07:48:12 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended
+120617 07:48:17 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  7:48:17 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  7:48:17 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  7:48:18 [Note] Event Scheduler: Loaded 0 events
+120617  7:48:18 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  7:52:57 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x737eaf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f9dda5add98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f9dda1b64a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(write_record(THD*, st_table*, st_copy_info*)+0x1e9) [0x632d79]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0xb1f) [0x636fcf]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f9dda1ae7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f9dd88ed70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f9d3c004a00 is an invalid pointer
+thd->thread_id=8
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 07:52:57 mysqld_safe Number of processes running now: 0
+120617 07:52:57 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  7:52:58 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  7:52:58 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  7:52:58 [Note] Event Scheduler: Loaded 0 events
+120617  7:52:58 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  7:55:19 [ERROR] /usr/libexec/mysqld: Table './test/test2' is marked as crashed and should be repaired
+120617  7:55:19 [Warning] Checking table:   './test/test2'
+120617  7:55:19 [Warning] Recovering table: './test/test2'
+120617  7:55:19 [Note] Found 36276 of 36275 rows when repairing './test/test2'
+120617  7:57:13 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x649aaf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f5dc2d61d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f5dc296a4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(write_record(THD*, st_table*, st_copy_info*)+0x1e9) [0x632d79]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0xb1f) [0x636fcf]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f5dc29627f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f5dc10a170d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f5d240049c0 is an invalid pointer
+thd->thread_id=2
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 07:57:13 mysqld_safe Number of processes running now: 0
+120617 07:57:13 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  7:57:13 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  7:57:13 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  7:57:13 [Note] Event Scheduler: Loaded 0 events
+120617  7:57:13 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  7:57:53 [ERROR] /usr/libexec/mysqld: Table './test/test2' is marked as crashed and should be repaired
+120617  7:57:53 [Warning] Checking table:   './test/test2'
+120617  7:57:53 [Warning] Recovering table: './test/test2'
+120617  7:57:53 [Note] Found 28233 of 28232 rows when repairing './test/test2'
+120617  8:02:52 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=2
+max_threads=100
+threads_connected=2
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x64e9d60
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7ff9ca4ffd98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7ff9ca1394a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7ff9ca1317f1]
+/lib64/libc.so.6(clone+0x6d) [0x7ff9c887070d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7ff9240099d0 is an invalid pointer
+thd->thread_id=5
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:02:52 mysqld_safe Number of processes running now: 0
+120617 08:02:52 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:02:53 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:02:53 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:02:53 [Note] Event Scheduler: Loaded 0 events
+120617  8:02:53 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:04:05 [ERROR] /usr/libexec/mysqld: Table './test/test2' is marked as crashed and should be repaired
+120617  8:04:05 [Warning] Checking table:   './test/test2'
+120617  8:06:15 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7996af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f6c7d80fd98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f6c7d4184a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f6c7d4107f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f6c7bb4f70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f6bdc0049d0 is an invalid pointer
+thd->thread_id=2
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:06:15 mysqld_safe Number of processes running now: 0
+120617 08:06:15 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:06:15 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:06:15 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:06:15 [Note] Event Scheduler: Loaded 0 events
+120617  8:06:15 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:42:50 [ERROR] /usr/libexec/mysqld: Table './test/test2' is marked as crashed and should be repaired
+120617  8:42:50 [Warning] Checking table:   './test/test2'
+120617  8:42:58 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x61e4af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f7715f75d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f7715b7e4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f7715b767f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f77142b570d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f7678004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:42:58 mysqld_safe Number of processes running now: 0
+120617 08:42:58 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:42:59 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:42:59 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:42:59 [Note] Event Scheduler: Loaded 0 events
+120617  8:42:59 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:17 [ERROR] /usr/libexec/mysqld: Table './test/test2' is marked as crashed and should be repaired
+120617  8:56:17 [Warning] Checking table:   './test/test2'
+120617  8:56:27 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x725eaf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f192c91ad98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f192c5234a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f192c51b7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f192ac5a70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f188c004a30 is an invalid pointer
+thd->thread_id=2
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:27 mysqld_safe Number of processes running now: 0
+120617 08:56:27 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:27 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:27 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:27 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:27 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:27 [ERROR] /usr/libexec/mysqld: Table './test/test2' is marked as crashed and should be repaired
+120617  8:56:27 [Warning] Checking table:   './test/test2'
+120617  8:56:27 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x67b3af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f0009debd98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f00099f44a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f00099ec7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f000812b70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7eff6c004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:27 mysqld_safe Number of processes running now: 0
+120617 08:56:27 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:27 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:27 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:28 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:28 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:28 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7b75af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f9eac9d3d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f9eac5dc4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f9eac5d47f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f9eaad1370d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f9e0c004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:28 mysqld_safe Number of processes running now: 0
+120617 08:56:28 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:28 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:28 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:28 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:28 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:28 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7590af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f7fee730d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f7fee3394a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f7fee3317f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f7feca7070d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f7f50004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:28 mysqld_safe Number of processes running now: 0
+120617 08:56:28 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:28 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:28 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:28 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:28 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:28 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7e0aaf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f0455d10d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f04559194a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f04559117f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f045405070d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f03b4004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:28 mysqld_safe Number of processes running now: 0
+120617 08:56:28 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:29 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:29 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:29 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:29 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:29 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x6e85af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7fe946ee3d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7fe946aec4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7fe946ae47f1]
+/lib64/libc.so.6(clone+0x6d) [0x7fe94522370d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7fe8a8004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:29 mysqld_safe Number of processes running now: 0
+120617 08:56:29 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:29 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:29 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:29 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:29 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:29 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7bd8af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f197aee8d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f197aaf14a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f197aae97f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f197922870d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f18dc004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:29 mysqld_safe Number of processes running now: 0
+120617 08:56:29 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:30 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:30 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:30 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:30 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:30 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x66baaf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f947392bd98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f94735344a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f947352c7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f9471c6b70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f93d4004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:30 mysqld_safe Number of processes running now: 0
+120617 08:56:30 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:30 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:30 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:30 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:30 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:30 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x70b3af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7ff3e33dad98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7ff3e2fe34a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7ff3e2fdb7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7ff3e171a70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7ff344004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:30 mysqld_safe Number of processes running now: 0
+120617 08:56:30 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:30 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:30 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:30 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:30 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:31 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x6a9daf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7fb40b3bed98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7fb40afc74a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7fb40afbf7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7fb4096fe70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7fb36c004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:31 mysqld_safe Number of processes running now: 0
+120617 08:56:31 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:31 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:31 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:31 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:31 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:31 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7f7daf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f4b9b992d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f4b9b59b4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f4b9b5937f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f4b99cd270d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f4afc004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:31 mysqld_safe Number of processes running now: 0
+120617 08:56:31 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:31 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:31 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:31 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:31 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:31 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x6b94af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f0685ab2d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f06856bb4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f06856b37f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f0683df270d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f05e4004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:31 mysqld_safe Number of processes running now: 0
+120617 08:56:31 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:32 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:32 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:32 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:32 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:32 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7769af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7fc86aa67d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7fc86a6704a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7fc86a6687f1]
+/lib64/libc.so.6(clone+0x6d) [0x7fc868da770d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7fc7cc004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:32 mysqld_safe Number of processes running now: 0
+120617 08:56:32 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:32 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:32 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:32 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:32 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:56:32 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7155af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7ffe5bfafd98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7ffe5bbb84a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7ffe5bbb07f1]
+/lib64/libc.so.6(clone+0x6d) [0x7ffe5a2ef70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7ffdbc004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:56:32 mysqld_safe Number of processes running now: 0
+120617 08:56:32 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:56:33 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:56:33 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:56:33 [Note] Event Scheduler: Loaded 0 events
+120617  8:56:33 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:57:14 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x6450af0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7fb0941bad98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7fb093dc34a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7fb093dbb7f1]
+/lib64/libc.so.6(clone+0x6d) [0x7fb0924fa70d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7faff40049e0 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:57:14 mysqld_safe Number of processes running now: 0
+120617 08:57:14 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:57:14 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:57:14 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:57:14 [Note] Event Scheduler: Loaded 0 events
+120617  8:57:14 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution
+120617  8:57:14 - mysqld got signal 11 ;
+This could be because you hit a bug. It is also possible that this binary
+or one of the libraries it was linked against is corrupt, improperly built,
+or misconfigured. This error can also be caused by malfunctioning hardware.
+We will try our best to scrape up some info that will hopefully help diagnose
+the problem, but since we have already crashed, something is definitely wrong
+and this may fail.
+
+key_buffer_size=33554432
+read_buffer_size=2097152
+max_used_connections=1
+max_threads=100
+threads_connected=1
+It is possible that mysqld could use up to 
+key_buffer_size + (read_buffer_size + sort_buffer_size)*max_threads = 1057802 K
+bytes of memory
+Hope that's ok; if not, decrease some variables in the equation.
+
+thd: 0x7cceaf0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+stack_bottom = 0x7f569fca1d98 thread_stack 0x30000
+/usr/libexec/mysqld(my_print_stacktrace+0x29) [0x847ba9]
+/usr/libexec/mysqld(handle_segfault+0x415) [0x5baae5]
+/lib64/libpthread.so.0(+0xf4a0) [0x7f569f8aa4a0]
+/usr/libexec/mysqld(cleanup_items(Item*)+0x10) [0x5c1590]
+/usr/libexec/mysqld(sp_head::execute(THD*)+0x601) [0x6f75b1]
+/usr/libexec/mysqld(sp_head::execute_trigger(THD*, st_mysql_lex_string const*, st_mysql_lex_string const*, st_grant_info*)+0x1dd) [0x6f792d]
+/usr/libexec/mysqld(Table_triggers_list::process_triggers(THD*, trg_event_type, trg_action_time_type, bool)+0xfa) [0x701eba]
+/usr/libexec/mysqld(mysql_insert(THD*, TABLE_LIST*, List<Item>&, List<List<Item> >&, List<Item>&, List<Item>&, enum_duplicates, bool)+0x8b2) [0x636d62]
+/usr/libexec/mysqld(mysql_execute_command(THD*)+0xb79) [0x5c7369]
+/usr/libexec/mysqld(mysql_parse(THD*, char*, unsigned int, char const**)+0x2d3) [0x5cc143]
+/usr/libexec/mysqld(dispatch_command(enum_server_command, THD*, char*, unsigned int)+0x4f9) [0x5ccad9]
+/usr/libexec/mysqld(do_command(THD*)+0xea) [0x5cddfa]
+/usr/libexec/mysqld(handle_one_connection+0x23d) [0x5c117d]
+/lib64/libpthread.so.0(+0x77f1) [0x7f569f8a27f1]
+/lib64/libc.so.6(clone+0x6d) [0x7f569dfe170d]
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort...
+thd->query at 0x7f5600004a00 is an invalid pointer
+thd->thread_id=1
+thd->killed=NOT_KILLED
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+120617 08:57:14 mysqld_safe Number of processes running now: 0
+120617 08:57:14 mysqld_safe mysqld restarted
+InnoDB: Error: log file ./ib_logfile0 is of different size 0 5242880 bytes
+InnoDB: than specified in the .cnf file 0 268435456 bytes!
+120617  8:57:14 [ERROR] Plugin 'InnoDB' init function returned error.
+120617  8:57:14 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+120617  8:57:15 [Note] Event Scheduler: Loaded 0 events
+120617  8:57:15 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.52-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Source distribution

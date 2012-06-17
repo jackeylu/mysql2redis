@@ -16,8 +16,6 @@
 
 DROP FUNCTION IF EXISTS lib_mysqludf_redis_info;
 DROP FUNCTION IF EXISTS redis_command;
-DROP FUNCTION IF EXISTS redis_command2;
 
 CREATE FUNCTION lib_mysqludf_redis_info RETURNS string SONAME 'lib_mysqludf_redis.so';
 CREATE FUNCTION redis_command RETURNS int SONAME 'lib_mysqludf_redis.so';
-CREATE FUNCTION redis_command2 RETURNS string SONAME 'lib_mysqludf_redis.so';

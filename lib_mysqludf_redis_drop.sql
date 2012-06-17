@@ -16,5 +16,4 @@
 
 DROP FUNCTION IF EXISTS lib_mysqludf_redis_info;
 DROP FUNCTION IF EXISTS redis_command;
-DROP FUNCTION IF EXISTS redis_command2;
 

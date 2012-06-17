@@ -210,7 +210,7 @@ my_bool redis_command_init(
 		return 0;
 		
 		} else {
-			strcpy(	message	,
+			snprintf(message,MYSQL_ERRMSG_SIZE,
 				"redis_command(host,port,command) Expected exactly 3  parameteres, a string, an integer and a string" );		
 			return 1;
 		}

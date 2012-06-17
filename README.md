@@ -21,11 +21,20 @@ See the [UDF] for more information.
 [mysql2redis]: https://github.com/jackeylu/mysql2redis
 [hiredis]: https://github.com/antirez/hiredis
 
-Documentation
+Installation
 -------------
 
-Installation and usage documentation is available in the INSTALL file.
+Use the ./install.sh script.
 
+Test
+----
+
+See the test directory.
+
+Uninstallation
+--------------
+
+Using the uninstall.sh
 
 Support
 -------

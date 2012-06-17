@@ -223,6 +223,13 @@ void redis_command_deinit(UDF_INIT *initid){
  * redis_command
  *
  * the implementation
+ *
+ * see the MySQL error log for the fprintf output
+ *
+ * @return 0 everything is OK
+ *         1 connection error, check the host/port
+ *         2 error with an NULL reply , it is so weird
+ *         3 command may be not a valid command, or other error
  */
 my_ulonglong redis_command(
 		UDF_INIT *initid,
@@ -240,22 +247,36 @@ my_ulonglong redis_command(
 	c = redisConnect(host,port);
 	if (c->err)
 	{
-		snprintf(error,MYSQL_ERRMSG_SIZE,"connection error: %s\n",
-			c->errstr);
+		fprintf(stderr,"connection error on (%s/%ld): %s\n",
+				host,port,c->errstr);
 
 		redisFree(c);
 		c = NULL;
-		return 1; //FIXME should return what?
+		return 1; 
 	}
 
 	reply = redisCommand(c,cmd);
 	if(NULL == reply)
 	{
-		snprintf(error,MYSQL_ERRMSG_SIZE,"connection error: %s\n",
-			c->errstr);
+		fprintf(stderr,"redisCommand %s,error: %s\n",
+			cmd,c->errstr);
 		redisFree(c);
 		c = NULL;
 		return 2;
+	}
+
+
+	if(REDIS_REPLY_ERROR==reply->type)
+	{
+		fprintf(stderr,"redisCommand \"%s\" reply error:%s\n",
+			cmd,NULL == reply->str ? "NULL" : reply->str);
+		freeReplyObject(reply);
+		reply = NULL;
+		redisFree(c);
+		c = NULL;
+
+		return 3;
+
 	}
 
 	// do the clean work

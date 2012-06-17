@@ -122,7 +122,7 @@ my_ulonglong redis_command(
  * lib_mysqludf_redis_info
  */
 my_bool lib_mysqludf_redis_info_init(
-	UDF_INIT *initid
+	UDF_INIT *initid __attribute__((__unused__))
 ,	UDF_ARGS *args
 ,	char *message
 ){
@@ -140,7 +140,7 @@ my_bool lib_mysqludf_redis_info_init(
 }
 
 void lib_mysqludf_redis_info_deinit(
-	UDF_INIT *initid
+	UDF_INIT *initid __attribute__((__unused__))
 ){
 /**
  * empty function
@@ -148,12 +148,12 @@ void lib_mysqludf_redis_info_deinit(
 }
 
 char* lib_mysqludf_redis_info(
-	UDF_INIT *initid,
-	UDF_ARGS *args,
+	UDF_INIT *initid __attribute__((__unused__)),
+	UDF_ARGS *args __attribute__((__unused__)),
 	char* result,
 	unsigned long* length,
-	char *is_null,
-	char *error)
+	char *is_null __attribute__((__unused__)),
+	char *error __attribute__((__unused__)))
 {
 	strcpy(result,LIBVERSION);
 	*length = strlen(LIBVERSION);
@@ -168,7 +168,7 @@ char* lib_mysqludf_redis_info(
  *
  */
 my_bool redis_command_init(
-	UDF_INIT *initid
+	UDF_INIT *initid __attribute__((__unused__))
 ,	UDF_ARGS *args
 ,	char *message
 ){
@@ -216,7 +216,7 @@ my_bool redis_command_init(
 		}
 
 }
-void redis_command_deinit(UDF_INIT *initid){
+void redis_command_deinit(UDF_INIT *initid __attribute__((__unused__))){
 	// nonthing need to be cleanup
 }
 /**

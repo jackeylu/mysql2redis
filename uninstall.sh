@@ -16,6 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 echo "uninstall the MySQL UDF plugin lib_mysqludf_redis"
+cd src/
 make uninstall
 
 if test $? -ne 0; then
@@ -25,6 +26,7 @@ else
 	echo "MySQL UDF uninstalled successfully"
 fi
 
+cd ../
 echo -e "\nPlease provide your MySQL root password"
 
 mysql -u root -p mysql < lib_mysqludf_redis_drop.sql

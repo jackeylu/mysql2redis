@@ -16,6 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 echo "Compiling the MySQL UDF"
+cd src/
 make
 
 if test $? -ne 0; then
@@ -29,6 +30,7 @@ fi
 
 echo -e "\nPlease provide your MySQL root password"
 
+cd ../
 mysql -u root -p mysql < lib_mysqludf_redis.sql
 
 if test $? -ne 0; then

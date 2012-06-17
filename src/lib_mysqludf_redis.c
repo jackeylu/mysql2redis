@@ -232,10 +232,10 @@ void redis_command_deinit(UDF_INIT *initid){
  *         3 command may be not a valid command, or other error
  */
 my_ulonglong redis_command(
-		UDF_INIT *initid,
+		UDF_INIT *initid __attribute__((__unused__)),
 		UDF_ARGS *args,
-		char *is_null,
-		char *error){
+		char *is_null __attribute__((__unused__)),
+		char *error __attribute__((__unused__))){
 	char *host = args->args[0];
 	long long port = *((long long*)args->args[1]);
 	char *cmd = args->args[2];

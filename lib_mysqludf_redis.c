@@ -113,33 +113,6 @@ my_ulonglong redis_command(
 ,	char *error
 );
 
-/**
- * redis_command2
- * 
- * executes the argument commandstring and returns its output.
- */
-DLLEXP 
-my_bool redis_command2_init(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char *message
-);
-
-DLLEXP 
-void redis_command2_deinit(
-	UDF_INIT *initid
-);
-
-DLLEXP 
-char* redis_command2(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char* result
-,	unsigned long* length
-,	char *is_null
-,	char *error
-);
-
 
 #ifdef	__cplusplus
 }
@@ -215,14 +188,14 @@ my_bool redis_command_init(
 
 		if(!check_host(host) || !check_ip(host))
 		{
-			strcpy(message,
+			snprintf(message,MYSQL_ERRMSG_SIZE,
 				"The first parameter is not a valid host or ip address");
 			return 2;
 		}
 
 		if(port <= 0)
 		{
-			strcpy(message,
+			snprintf(message,MYSQL_ERRMSG_SIZE,
 				"The second parameter must be an integer bigger than zero");
 			return 2;
 		}
@@ -294,62 +267,6 @@ my_ulonglong redis_command(
 	return 0;
 }
 
-my_bool redis_command2_init(
-		UDF_INIT *initid
-		,	UDF_ARGS *args
-		,	char *message
-		){
-	unsigned int i=0;
-	if(args->arg_count == 1
-			&& args->arg_type[i]==STRING_RESULT){
-		return 0;
-	} else {
-		strcpy(
-				message
-				,	"Expected exactly one string type parameter"
-		      );		
-		return 1;
-	}
-}
-void redis_command2_deinit(
-		UDF_INIT *initid
-		){
-}
-char* redis_command2(
-		UDF_INIT *initid
-		,	UDF_ARGS *args
-		,	char* result
-		,	unsigned long* length
-		,	char *is_null
-		,	char *error
-		){
-	FILE *pipe;
-	char line[1024];
-	unsigned long outlen, linelen;
-
-	result = malloc(1);
-	outlen = 0;
-
-	pipe = popen(args->args[0], "r");
-
-	while (fgets(line, sizeof(line), pipe) != NULL) {
-		linelen = strlen(line);
-		result = realloc(result, outlen + linelen);
-		strncpy(result + outlen, line, linelen);
-		outlen = outlen + linelen;
-	}
-
-	pclose(pipe);
-
-	if (!(*result) || result == NULL) {
-		*is_null = 1;
-	} else {
-		result[outlen] = 0x00;
-		*length = strlen(result);
-	}
-
-	return result;
-}
 
 
 #endif /* HAVE_DLOPEN */

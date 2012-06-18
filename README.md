@@ -15,7 +15,7 @@ about 3000 calls in a second.
 Requirements
 ------------
 
-1. [MySQL2Redis][mysql2reids] is built with [HiRedis][hiredis].
+1. [MySQL2Redis][mysql2redis] is built with [HiRedis][hiredis].
 So, you should install the library first.
 
 2. MySQL2Redis is a plugin for MySQL, with the UDF support, so

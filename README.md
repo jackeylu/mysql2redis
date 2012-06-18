@@ -53,9 +53,13 @@ In this case, you can set the kernel parameters or try to modify the code in
 hiredis on socket operation (setsockopt() with SO_REUSEADDR).
 
   vi /etc/sysctl.conf
+  
   net.ipv4.tcp_syncookies=1
+  
   net.ipv4.tcp_tw_reuse=1
+  
   net.ipv4.tcp_tw_recycle=1
+  
 
 and /sbin/sysctl -p to make it be usefull.
 

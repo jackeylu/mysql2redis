@@ -41,7 +41,7 @@ Uninstallation
 Using the uninstall.sh
 
 
-Importan Notes
+Notice
 --------------
 When you do a lot of redis_command() calling in a short time,
 you may get a lot of error like this "Connection error on (xxxx/xxx):

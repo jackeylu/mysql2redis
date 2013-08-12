@@ -13,7 +13,7 @@ If you want to a thread-able solution, you can try this project of [dawnbreaks].
 
 [UDF]: http://dev.mysql.com/doc/refman/5.1/en/adding-functions.html
 [Redis]: http://redis.io/
-[danbreaks]: https://github.com/dawnbreaks/mysql2redis
+[dawnbreaks]: https://github.com/dawnbreaks/mysql2redis
 
 Requirements
 ------------

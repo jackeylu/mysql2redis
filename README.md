@@ -9,8 +9,11 @@ This application just test on CentOS 6.2(Final),MySQL Server 5.1 and 5.5.
 In a Dell Server PowerEdge R601 (CPU Xeon(R) E5506 * 8, 24GB Memory),
 about 3000 calls in a second.
 
+If you want to a thread-able solution, you can try this project of [dawnbreaks].
+
 [UDF]: http://dev.mysql.com/doc/refman/5.1/en/adding-functions.html
 [Redis]: http://redis.io/
+[danbreaks]: https://github.com/dawnbreaks/mysql2redis
 
 Requirements
 ------------

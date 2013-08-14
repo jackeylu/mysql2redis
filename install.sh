@@ -29,12 +29,15 @@ else
 fi
 
 echo -e "\nPlease provide your MySQL root password"
+read pwd
+echo -e "\nThe password for MySQL root your inputed is $pwd\n"
 
 cd ../
-mysql -u root -p mysql < lib_mysqludf_redis.sql
+mysql -u root -p$pwd mysql < lib_mysqludf_redis.sql
 
 if test $? -ne 0; then
 	echo "ERROR: unable to install the UDF"
+	echo "Check the enviroment path of redis, hiredis, mysql and mysql-plugin"
 	exit 1
 else
 	echo "MySQL UDF installed successfully"

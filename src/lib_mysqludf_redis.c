@@ -1,17 +1,17 @@
 /* 
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Lesser General Public
-	License as published by the Free Software Foundation; either
-	version 2.1 of the License, or (at your option) any later version.
-	
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Lesser General Public License for more details.
-	
-	You should have received a copy of the GNU Lesser General Public
-	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(WIN32)
 #define DLLEXP __declspec(dllexport) 
@@ -67,9 +67,9 @@ extern "C" {
 
 DLLEXP 
 my_bool lib_mysqludf_redis_info_init(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char *message
+	UDF_INIT *initid,
+	UDF_ARGS *args,
+	char *message
 );
 
 DLLEXP 
@@ -79,12 +79,12 @@ void lib_mysqludf_redis_info_deinit(
 
 DLLEXP 
 char* lib_mysqludf_redis_info(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char* result
-,	unsigned long* length
-,	char *is_null
-,	char *error
+	UDF_INIT *initid,
+	UDF_ARGS *args,
+	char* result,
+	unsigned long* length,
+	char *is_null,
+	char *error
 );
 
 /**
@@ -94,9 +94,9 @@ char* lib_mysqludf_redis_info(
  */
 DLLEXP 
 my_bool redis_command_init(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char *message
+	UDF_INIT *initid,
+	UDF_ARGS *args,
+	char *message
 );
 
 
@@ -107,10 +107,10 @@ void redis_command_deinit(
 
 DLLEXP 
 my_ulonglong redis_command(
-	UDF_INIT *initid
-,	UDF_ARGS *args
-,	char *is_null
-,	char *error
+	UDF_INIT *initid,
+	UDF_ARGS *args,
+	char *is_null,
+	char *error
 );
 
 
@@ -122,15 +122,14 @@ my_ulonglong redis_command(
  * lib_mysqludf_redis_info
  */
 my_bool lib_mysqludf_redis_info_init(
-	UDF_INIT *initid __attribute__((__unused__))
-,	UDF_ARGS *args
-,	char *message
-){
+	UDF_INIT *initid __attribute__((__unused__)),
+	UDF_ARGS *args,
+	char *message)
+{
 	my_bool status;
 	if(args->arg_count!=0){
-		strcpy(
-			message
-		,	"No arguments allowed (udf: lib_mysqludf_redis_info)"
+		strcpy(message,
+				"No arguments allowed (udf: lib_mysqludf_redis_info)"
 		);
 		status = 1;
 	} else {
@@ -168,14 +167,21 @@ char* lib_mysqludf_redis_info(
  *
  */
 my_bool redis_command_init(
-	UDF_INIT *initid __attribute__((__unused__))
-,	UDF_ARGS *args
-,	char *message
-){
-	if(args->arg_count == 3 && 
+	UDF_INIT *initid __attribute__((__unused__)),
+	UDF_ARGS *args,
+	char *message)
+{
+	if( (args->arg_count == 3 && 
 		args->arg_type[0]==STRING_RESULT &&
 		args->arg_type[1]==INT_RESULT &&
-		args->arg_type[2]==STRING_RESULT)
+		args->arg_type[2]==STRING_RESULT)||
+			(args->arg_count ==  5 &&
+			 args->arg_type[0]==STRING_RESULT &&
+			 args->arg_type[1]==INT_RESULT &&
+			 args->arg_type[2]==STRING_RESULT &&
+			 args->arg_type[3]==STRING_RESULT &&
+			 args->arg_type[4]==STRING_RESULT)
+			)
 	{
 
 		args->maybe_null = 0; // each parameter could not be NULL
@@ -184,7 +190,6 @@ my_bool redis_command_init(
 		unsigned long host_len = args->lengths[0];
 		long long port = *((long long*)args->args[1]);
 		char *cmd = args->args[2];
-		unsigned long cmd_len = args->lengths[3];
 
 		if(!check_host(host) || !check_ip(host))
 		{
@@ -202,18 +207,34 @@ my_bool redis_command_init(
 
 		if(strlen(cmd) <=0 || NULL == cmd)
 		{
-			snprintf(message,MYSQL_ERRMSG_SIZE,"The third parameter error,[%s]\n",
+			snprintf(message,MYSQL_ERRMSG_SIZE,
+					"The third parameter error,[%s]\n",
 					cmd);
 			return 2;
+		}
+		if (args->arg_count == 5)
+		{
+			if(strlen(args->args[3]) <= 0 
+					|| NULL == args->args[3]
+					||strlen(args->args[4]) <= 0 
+					|| NULL == args->args[4]
+					)
+			{
+			snprintf(message,MYSQL_ERRMSG_SIZE,
+					"The fourth/fifth parameter error,[%s,%s]\n",
+					args->args[3],args->args[4]);
+			return 2;
+			}
 		}
 		// everthing looks OK.
 		return 0;
 		
-		} else {
-			snprintf(message,MYSQL_ERRMSG_SIZE,
-				"redis_command(host,port,command) Expected exactly 3  parameteres, a string, an integer and a string" );		
-			return 1;
-		}
+	}
+       	else {
+		snprintf(message,MYSQL_ERRMSG_SIZE,
+			"redis_command(host,port,command) Expected exactly 3 or 5  parameteres, a string, an integer and a string" );		
+		return 1;
+	}
 
 }
 void redis_command_deinit(UDF_INIT *initid __attribute__((__unused__))){
@@ -238,7 +259,20 @@ my_ulonglong redis_command(
 		char *error __attribute__((__unused__))){
 	char *host = args->args[0];
 	long long port = *((long long*)args->args[1]);
-	char *cmd = args->args[2];
+	char *cmd = NULL;
+	char *format = NULL;
+	char *value1 = NULL;
+	char *value2 = NULL;
+	if (args->arg_count == 5)
+	{
+		format = args->args[2];
+		value1 = args->args[3];
+		value2 = args->args[4];
+	}
+	else
+	{
+		cmd = args->args[2];
+	}
 
 	// about the redis
 	redisContext *c = NULL;
@@ -247,15 +281,24 @@ my_ulonglong redis_command(
 	c = redisConnect(host,port);
 	if (c->err)
 	{
-		fprintf(stderr,"connection error on (%s/%ld): %s\n",
-				host,port,c->errstr);
+		fprintf(stderr,
+			"connection error on (%s/%ld): %s\n",
+			host,port,c->errstr);
 
 		redisFree(c);
 		c = NULL;
 		return 1; 
 	}
 
-	reply = redisCommand(c,cmd);
+	if (args->arg_count == 3)
+	{
+		reply = redisCommand(c,cmd);
+	}
+	else if (args->arg_count == 5)
+	{
+		reply = redisCommand(c, format, value1, value2);
+	}
+
 	if(NULL == reply)
 	{
 		fprintf(stderr,"redisCommand %s,error: %s\n",
